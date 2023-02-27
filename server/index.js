@@ -1,11 +1,11 @@
-import express from 'express'
-import cors from 'cors'
-import morgan from 'morgan';
+import cors from 'cors';
+import express from 'express';
 import http from 'http';
-import {Server as WebServerSocket} from 'socket.io'
-import {PORT} from './config.js'
-import {join, dirname } from 'path';
+import morgan from 'morgan';
+import { dirname, join } from 'path';
+import { Server as WebServerSocket } from 'socket.io';
 import { fileURLToPath } from 'url';
+import { PORT } from './config.js';
 import { appendData, readData } from './services/txtManager.js';
 
 const app = express();
@@ -26,7 +26,7 @@ io.on('connection',(socket)=>{
   })
   socket.on('message',(message)=>{
     const newMessage = {
-      body: message,
+      body: message, 
       from: socket.id.substring(0, 5)
     }
     appendData(newMessage);
@@ -36,4 +36,4 @@ io.on('connection',(socket)=>{
 
 app.use(express.static(join(__dirname,'../client/dist')));
 
-server.listen(PORT, ()=>console.log('funcioando en el puerto', PORT))
+server.listen(PORT, ()=>console.log('funcionando en el puerto', PORT))

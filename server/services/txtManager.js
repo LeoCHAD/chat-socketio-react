@@ -5,7 +5,14 @@ import { DATA_PATH } from "../config.js";
 // Función para escribir en el archivo
 export const appendData = (data) => {
   // Escribimos el string en el archivo
-  fs.appendFileSync(DATA_PATH, JSON.stringify(data) + "&sep&");
+  readData().then((charge)=>{
+    if(charge){
+      if(charge.length > 20){
+        cutData(charge);
+      }
+    }
+    fs.appendFileSync(DATA_PATH, JSON.stringify(data) + "&sep&");
+  });
 };
 
 export const readData = () => {
@@ -22,12 +29,7 @@ export const readData = () => {
   rl.on("line", (line) => {
     const texts = line.split("&sep&").filter((text) => text !== "");
     cadenas = texts.map((cadena) => JSON.parse(cadena));
-    if(cadenas){
-      if(cadenas.length >= 20){
-        cutData(cadenas);
-        console.log('data reducida')
-      }
-    }
+   
   });
 
   // Devolvemos una promesa que resuelve con el array de cadenas
@@ -46,8 +48,9 @@ export const readData = () => {
 
 const cutData = (data) => {
   const newData = data.slice(-10);
-  newData.foreach((data) => {
-    fs.writeFileSync(DATA_PATH, "");
-    appendData(data);
-  });
+  console.log('data reducida', newData.length);
+  fs.writeFileSync(DATA_PATH, "");
+  for(let mess of newData){
+    fs.appendFileSync(DATA_PATH, JSON.stringify(mess) + "&sep&");
+  }
 };

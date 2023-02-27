@@ -5,22 +5,18 @@ body {
 #root {
   margin: 0;
 }
-#list-messages {
-  scroll-margin-bottom: 0;
-  position: relative;
-}
 
-#list-messages::before {
+.fade-white::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  z-index: 21;
   background: linear-gradient(
     180deg,
     #fff,
-    #fff9,
     #fff9,
     #fff8,
     #fff7,
@@ -29,6 +25,26 @@ body {
     transparent,
     transparent
   );
-  /* box-shadow: inset 0 0 10px 3px red; */
+}
+
+
+.fade-black::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 21;
+  background: linear-gradient(
+    180deg,
+    #000,
+    #0009,
+    #0008,
+    #0007,
+    transparent,
+    transparent,
+    transparent,
+    transparent
+  );
 }
