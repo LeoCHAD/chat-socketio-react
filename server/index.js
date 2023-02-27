@@ -34,6 +34,6 @@ io.on('connection',(socket)=>{
   })
 })
 
-app.use(express.static(join(__dirname,'../client/dist')));
+app.use(express.static(join(__dirname,'../public')));
 
 server.listen(PORT, ()=>console.log('funcionando en el puerto', PORT))
