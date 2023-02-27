@@ -13,7 +13,7 @@ const __dirname = dirname(fileURLToPath(import.meta.url))
 const server = http.createServer(app);
 const io = new WebServerSocket(server, {
   cors: {
-    origin: 'https://chat-socketio-react-dvkjetxcp-leochad.vercel.app'
+    origin: '*'
   }
 });
 
