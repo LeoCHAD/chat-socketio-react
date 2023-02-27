@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import io from "socket.io-client";
 import { base64Decode, base64Encode } from "./utilities/handleB64";
 
-const socket = io("http://localhost:4000");
+const socket = io();
 
 function App() {
   const [message, setMessage] = useState('');
