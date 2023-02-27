@@ -1,5 +1,13 @@
 {
-  "build": {
-    "outDir": "server"
-  }
+  "version": 1,
+  "builds": [
+    {
+      "src": "/server/index.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [{
+    "src":"/(.*)",
+    "dest":"/"
+  }]
 }
